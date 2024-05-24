@@ -1,0 +1,47 @@
+
+body {
+    font-family: 'Poppins', 'sans-serif';
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 550;
+    color: #2F3036;
+}
+
+.nav-link {
+    font-size: 20px;
+    font-weight: 430;
+    color: #71727A;
+}
+
+.hero-title {
+    font-size: 45px;
+    line-height: 70px;
+    font-weight: 500;
+}
+
+.text-secondary {
+    font-size: 27px;
+}
+.knn {
+    font-size: 25px;
+    font-weight: 400;
+    padding: 20px 60px 20px 60px;
+    border-radius: 5px;
+}
+
+
+.form-group label{
+    font-size: 25px;
+}
+
+.form-control option{
+    font-size: 20px;
+    color: #71727A;
+}
+
+.card-body img{
+    width: 65px;
+}
+
