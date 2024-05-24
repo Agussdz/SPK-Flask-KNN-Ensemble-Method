@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container m-auto">
+          <a class="logo navbar-brand" href="#">Kelompok 3</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto py-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active mx-5 text-primary"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-5" href="#inputform" class="nav-link"
+                  >Input</a
+                >
+              </li>
+            </ul>
+            <div>
+              <button class="spk btn btn-primary ms-4 px-5 py-2">SPK</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- Hero Section -->
+      <section class="Hero">
+        <div class="container mt-5">
+          <div class="row">
+            <div
+              class="col-md-6 col-sm-12 align-items-center justify-content-center"
+            >
+              <div class="hero-title mb-4">
+                Sistem Pengambilan Keputusan Kelayakan Penerima Kredit
+              </div>
+              <p class="col-md-10 my-4 text-secondary">
+                Sistem untuk menentukan kelayakan sebagai penerima kredit dengan
+                menggunakan metode klasifikasi
+              </p>
+              <p>
+                <button class="knn btn btn-outline-primary" >
+                  K-Nearest Neighbors
+                </button>
+              </p>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+              <img
+                src="{{ url_for('static', filename='credit.svg') }}"
+                alt=""
+                class="img-hero w-100 mt-5"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="form-input container mt-5 " id="inputform">
+        <form action="/" method="POST">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group mt-3 ">
+                <label label label class="my-3" for="K1">Pilih Pekerjaan</label>
+                  <select
+                  class="form-control p-4 border border-primary"
+                  id="K1"
+                  name="K1"
+                  >
+                  <option value="" disabled selected>Pilih Jenis Pekerjaan</option>
+                  <option value="1">Petani</option>
+                  <option value="2">Wiraswasta & Lain-lain</option>
+                  <option value="3">Karyawan</option>
+                  <option value="4">Profesi</option>
+                  <option value="5">PNS/BUMN</option>
+                  </select>
+              </div>
+              <div class="form-group mt-3 ">
+                <label class="my-3" for="K2">Tanggungan</label>
+                <select
+                  class="form-control p-4 border border-primary"
+                  id="K2"
+                  name="K2"
+                  >
+                  <option value="" disabled selected>Jumlah Tanggungan</option>
+                  <option value="1">>= 6 Orang</option>
+                  <option value="2">5 Orang</option>
+                  <option value="3">3-4 Orang</option>
+                  <option value="4">1-2 Orang</option>
+                  <option value="5">0</option>
+                </select>
+              </div>
+              <div class="form-group mt-3 ">
+                <label class="my-3" for="K3">Penghasilan</label>
+                <select
+                class="form-control p-4 border border-primary"
+                  id="K3"
+                  name="K3"
+                >
+                <option value="" disabled selected>
+                  Pilih Penghasilan Perbulan
+                </option>
+                <option value="1">< 1 juta rupiah</option>
+                <option value="2">1 s/d 1,5 juta rupiah</option>
+                <option value="3">1,5 s/d 2,5 juta rupiah</option>
+                <option value="4">2,5 s/d 3,5 juta rupiah</option>
+                <option value="5">>3,5 juta rupiah</option>
+                </select>
+              </div>
+              <div div class="form-group mt-3 ">
+                <label class="my-3" for="K4">Status Rumah</label>
+                <select
+                class="form-control p-4 border border-primary"
+                id="K4"
+                name="K4"
+                >
+                <option value="" disabled selected>Pilih Status Rumah</option>
+                <option value="1">Kos/Kontrak</option>
+                <option value="2">KPR</option>
+                <option value="3">Milik Instansi</option>
+                <option value="4">Milik Keluarga</option>
+                <option value="5">Milik Sendiri</option>
+                </select>
+              </div>
+              <div class="form-group mt-3 ">
+              <label class="my-3" for="K5">Kelengkapan Berkas</label>
+              <select
+              class="form-control p-4 border border-primary"
+              id="K5"
+              name="K5"
+              >
+              <option value="" disabled selected>
+                Pilih Kelengkapan Berkas/Dokumen
+              </option>
+              <option value="1">Sangat Kurang</option>
+              <option value="2">Kurang</option>
+              <option value="3">Cukup</option>
+              <option value="4">Baik</option>
+              <option value="5">Sangat Baik</option>
+              </select>
+            </div>
+            <div class="my-5 ">
+            <button type="submit" class="btn btn-primary py-3 px-5">
+              Submit
+            </button>
+            </div>
+
+            {% if request.method == "POST" %}
+            <div class="card mt-4 mb-4">
+            <div class="card-header">Hasil Prediksi</div>
+            <div class="card-body">
+            Berdasarkan perhitungan di atas, sistem menyatakan pemohon {% if
+            prediksi == 1 %}
+            <b class="text-success">Memenuhi</b>
+            {% else %}
+            <b class="text-danger">Tidak Memenuhi</b>
+            {% endif %} mengajukan kredit.
+            <br />
+            Persentase probabilitas:
+            <b class="text-primary">{{ probabilitas }}%</b>
+            {% if probabilitas > 50 %} (Diterima) {% else %} (Ditolak) {% endif
+            %}
+            </div>
+            </div>
+            {% endif %}
+            </div>
+          <div> 
+          </div>
+        </form>
+      </div>
+        
+    </main>
+  </body>
+</html>
