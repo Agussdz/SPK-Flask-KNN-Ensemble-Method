@@ -51,7 +51,7 @@
                 <a
                   class="nav-link active mx-5 text-primary"
                   aria-current="page"
-                  href="#"
+                  href="#home"
                   >Home</a
                 >
               </li>
@@ -70,7 +70,7 @@
     </header>
     <main>
       <!-- Hero Section -->
-      <section class="Hero">
+      <section class="Hero" id="home">
         <div class="container mt-5">
           <div class="row">
             <div
@@ -100,12 +100,115 @@
           </div>
         </div>
       </section>
+      <!-- Hasil Prediksi -->
+<div class="container mb-2">
+  {% if prediksi is not none %}
+  <div class="card mt-4 mb-4">
+    <div class="card-header bg-light text-primary fw-bolder d-flex justify-content-center">Hasil Prediksi</div>
+    <div class="card-body">
+      <!-- Tampilkan data input pengguna -->
+      <p>Pekerjaan: 
+        {% if request.method == 'POST' %}
+          {% if request.form['K1'] == '1' %}
+            Petani
+          {% elif request.form['K1'] == '2' %}
+            Wiraswasta & Lain-lain
+          {% elif request.form['K1'] == '3' %}
+            Karyawan
+          {% elif request.form['K1'] == '4' %}
+            Profesi
+          {% elif request.form['K1'] == '5' %}
+            PNS/BUMN
+          {% endif %}
+        {% endif %}
+      </p>
+      <p>Tanggungan: 
+        {% if request.method == 'POST' %}
+          {% if request.form['K2'] == '1' %}
+            >= 6 Orang
+          {% elif request.form['K2'] == '2' %}
+            5 Orang
+          {% elif request.form['K2'] == '3' %}
+            3-4 Orang
+          {% elif request.form['K2'] == '4' %}
+            1-2 Orang
+          {% elif request.form['K2'] == '5' %}
+            0
+          {% endif %}
+        {% endif %}
+      </p>
+      <p>Penghasilan: 
+        {% if request.method == 'POST' %}
+          {% if request.form['K3'] == '1' %}
+            < 1 juta rupiah
+          {% elif request.form['K3'] == '2' %}
+            1 s/d 1,5 juta rupiah
+          {% elif request.form['K3'] == '3' %}
+            1,5 s/d 2,5 juta rupiah
+          {% elif request.form['K3'] == '4' %}
+            2,5 s/d 3,5 juta rupiah
+          {% elif request.form['K3'] == '5' %}
+            >3,5 juta rupiah
+          {% endif %}
+        {% endif %}
+      </p>
+      <p>Status Rumah: 
+        {% if request.method == 'POST' %}
+          {% if request.form['K4'] == '1' %}
+            Kos/Kontrak
+          {% elif request.form['K4'] == '2' %}
+            KPR
+          {% elif request.form['K4'] == '3' %}
+            Milik Instansi
+          {% elif request.form['K4'] == '4' %}
+            Milik Keluarga
+          {% elif request.form['K4'] == '5' %}
+            Milik Sendiri
+          {% endif %}
+        {% endif %}
+      </p>
+      <p>Kelengkapan Berkas: 
+        {% if request.method == 'POST' %}
+          {% if request.form['K5'] == '1' %}
+            Sangat Kurang
+          {% elif request.form['K5'] == '2' %}
+            Kurang
+          {% elif request.form['K5'] == '3' %}
+            Cukup
+          {% elif request.form['K5'] == '4' %}
+            Baik
+          {% elif request.form['K5'] == '5' %}
+            Sangat Baik
+          {% endif %}
+        {% endif %}
+      </p>
+      Berdasarkan perhitungan di atas, sistem menyatakan pemohon 
+      {% if prediksi == 1 %}
+        <b class="text-success">Memenuhi</b>
+      {% else %}
+        <b class="text-danger">Tidak Memenuhi</b>
+      {% endif %}
+      mengajukan kredit.
+      <br />
+      Persentase probabilitas:
+      <b class="text-primary">{{ probabilitas }}%</b>
+      {% if probabilitas > 50 %}
+        (Diterima)
+      {% else %}
+        (Ditolak)
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</div>
 
-      <div class="form-input container mt-5 " id="inputform">
+
+      <!-- Form Prediksi -->
+      <div class="form-input container mt-2 " id="inputform">
         <form action="/" method="POST">
           <div class="row">
             <div class="col-12">
-              <div class="form-group mt-3 ">
+              <div class="form-group ">
                 <label label label class="my-3" for="K1">Pilih Pekerjaan</label>
                   <select
                   class="form-control p-4 border border-primary"
@@ -189,25 +292,7 @@
               Submit
             </button>
             </div>
-
-            {% if request.method == "POST" %}
-            <div class="card mt-4 mb-4">
-            <div class="card-header">Hasil Prediksi</div>
-            <div class="card-body">
-            Berdasarkan perhitungan di atas, sistem menyatakan pemohon {% if
-            prediksi == 1 %}
-            <b class="text-success">Memenuhi</b>
-            {% else %}
-            <b class="text-danger">Tidak Memenuhi</b>
-            {% endif %} mengajukan kredit.
-            <br />
-            Persentase probabilitas:
-            <b class="text-primary">{{ probabilitas }}%</b>
-            {% if probabilitas > 50 %} (Diterima) {% else %} (Ditolak) {% endif
-            %}
-            </div>
-            </div>
-            {% endif %}
+            
             </div>
           <div> 
           </div>
